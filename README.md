@@ -125,7 +125,7 @@ AngularJS expressions bind AngularJS data to HTML the same way as the **ng-bind*
 </html>
 ```
 
-## AngularJS Numbers
+### AngularJS Numbers
 AngularJS numbers are like JavaScript numbers:
 ```
 <div ng-app="" ng-init="quantity=1;cost=5">
@@ -140,7 +140,7 @@ Same example using `ng-bind`:
 ```
 > Using `ng-init` is not very common. You will learn a better way to initialize data in the section about controllers.
 
-## AngularJS Strings
+### AngularJS Strings
 AngularJS strings are like JavaScript strings:
 ```
 <div ng-app="" ng-init="firstName='John';lastName='Doe'">
@@ -148,14 +148,14 @@ AngularJS strings are like JavaScript strings:
 </div>
 ```
 
-## AngularJS Objects
+### AngularJS Objects
 AngularJS objects are like JavaScript objects:
 ```
 <div ng-app="" ng-init="person={firstName:'John',lastName:'Doe'}">
   <p>The name is {{ person.lastName }}</p>
 </div>
 ```
-## AngularJS Arrays
+### AngularJS Arrays
 AngularJS arrays are like JavaScript arrays:
 ```
 <div ng-app="" ng-init="points=[1,15,19,2,40]">
@@ -232,3 +232,82 @@ app.controller("myCtrl", function($scope) {
 AngularJS has a set of built-in directives which you can use to add functionality to your application.
 
 For a full reference, visit the [AngularJS directive reference](https://www.w3schools.com/angular/angular_ref_directives.asp).
+
+In addition, you can use the module to add your own directives ot your applications:
+```
+<div ng-app="myApp" w3-test-directive></div>
+
+<script>
+var app = angular.module("myApp", []);
+
+app.directive("w3TestDirective", function() {
+  return {
+    template : "I was made in a directive constructor!"
+  };
+});
+</script>
+```
+
+### Modules and Controllers in Files
+It's common in AngularJS applications to put the module and the controllers in JavaScript files.
+In this example, "myApp.js" contains an application module definition, while "myCtrl.js" contains the controller:
+```
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+{{ firstName + " " + lastName }}
+</div>
+
+<script src="myApp.js"></script>
+<script src="myCtrl.js"></script>
+
+</body>
+</html>
+```
+#### myApp.js
+```
+var app = angular.module("myApp",[]);
+```
+> The [] parameter in the module definition can be used to define dependent modules. Without the [] parameter, you are not creating a new module, but retrieving an existing one.
+#### myCtrl.js
+```
+app.controller("myCtrl", function($scope) {
+  $scope.firstName = "John";
+  $scope.lastName= "Doe";
+});
+```
+
+### Functions can Pollute the Global Namespace
+Global functions should be avoided in JavaScript. They can easily be overwritten or destroyed by other scripts.
+
+AngularJS modules reduces this problem, by keeping all functions local to the module.
+
+### When to Load the Library
+While it is common in HTML applications to place scripts at the end of the `<body>` element, it is recommended that you load the AngularJS library either in the `<head>` or at the start of the `<body>`.
+
+This is because calls to `angular.module` can only be compiled after the library has been loaded.
+
+```
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+{{ firstName + " " + lastName }}
+</div>
+
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope) {
+  $scope.firstName = "John";
+  $scope.lastName = "Doe";
+});
+</script>
+
+</body>
+</html>
+```
