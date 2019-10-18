@@ -4,6 +4,10 @@ AngularJS is a JavaScript framework written in JavaScript and is distributed as 
 
 `<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>`
 
+**Table of Contents**
+[Introduction](#-AngularJS-Extends-HTML)
+[Directives](#-AngularJS-Directives)
+
 ## AngularJS Extends HTML
 
 AngularJS extends HTML with ng-directives, such as:
@@ -53,9 +57,9 @@ The span with ng-bind will take the variable of firstName and fill in that place
 ```
 
 ## AngularJS Expressions
-
 AngularJS expressions are written indies double braces: `**{{ expression }}**`
 Expressions can also be written inside a directive: `**ng-bind="expression"**`
+
 AngularJS will resolve the expression, and return the result exactly where the expression is written.
 **AngularJS expressions** are much like **JavaScript expressions**: They can contain literals, operators, and variables.
 
@@ -150,3 +154,21 @@ AngularJS objects are like JavaScript objects:
   <p>The name is {{ person.lastName }}</p>
 </div>
 ```
+## AngularJS Arrays
+AngularJS arrays are like JavaScript arrays:
+```
+<div ng-app="" ng-init="points=[1,15,19,2,40]">
+  <p>The third result is {{ points[2] }}</p>
+</div>
+```
+
+### AngularJS Expressions vs. JavaScript Expressions
+Like JavaScript expressions, AngularJS expressions can contain literals, operators, and variables.
+
+Unlike JavaScript expressions, AngularJS expressions can be written inside HTML.
+
+AngularJS expressions do not support conditionals, loops, and exceptions, while JavaScript expressions do.
+
+AngularJS expressions support filters, while JavaScript expressions do not.
+
+## AngularJS Modules
