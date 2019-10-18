@@ -4,7 +4,7 @@ AngularJS is a JavaScript framework written in JavaScript and is distributed as 
 
 `<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>`
 
-# AngularJS Extends HTML
+## AngularJS Extends HTML
 
 AngularJS extends HTML with ng-directives, such as:
 
@@ -31,7 +31,7 @@ Example:
 Example explained:
 > AngularJS starts automatically when the web page has loaded. The **ng-app** directive tells AngularJS that the `<div>` element is the "owner" of an AngularJS application. The **ng-model** directive binds the value of the input field to the application variable name. The **ng-bind** directive binds the content of the `<p>` element to the application variable name.
   
-# AngularJS Directives
+## AngularJS Directives
 
 AngularJS directives are HTML attributes with an ng prefix.
 
@@ -43,3 +43,11 @@ For example, the **ng-init** directive *initializes* AngularJS application varia
 </div>
 ```
 The span with ng-bind will take the variable of firstName and fill in that placeholder with the value of John when 
+
+> Alternatively, you can use **data-ng-**, instead of **ng-**, if you want to make your page HTML valid as shown below and will *not* through an error when validating HTML code for compliance.
+
+```
+<div data-ng-app="" data-ng-init="firstName='John'">
+  <p>The name is <span data-ng-bind="firstName"></span></p>
+</div>
+```
