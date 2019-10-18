@@ -5,9 +5,31 @@ AngularJS is a JavaScript framework written in JavaScript and is distributed as 
 
 `<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>`
 
-**Table of Contents**
-- [Introduction](#angular-extends-html)
+## Table of Contents
+- [Intro](#angularjs-extends-html)
 - [Directives](#angularjs-directives)
+- [Expressions](#angularjs-expressions)
+  - [Numbers](#angularjs-numbers)
+  - [Strings](#angularjs-stings)
+  - [Objects](#angularjs-objects)
+  - [Arrays](#angularjs-arrays)
+- [Applications](#angularjs-applications)
+- [Modules](#angularjs-modules)
+  - [Creating a Module]()
+  - [Adding a Controller]()
+  - [Adding a Directive]()
+  - [Modules and Controllers in Files]()
+  - [Functions can Pollute the Global Namespace]()
+  - [When to Load the Library]()
+- [Directives]()
+  - [Intro to Directives]()
+  - [ng-app]()
+  - [ng-init]()
+  - [ng-model]()
+  - [Creating new Directives]()
+  - [Restrictions]()
+- [Data Binding]()
+  
 
 ## AngularJS Extends HTML
 
@@ -97,34 +119,6 @@ AngularJS expressions bind AngularJS data to HTML the same way as the **ng-bind*
 </html>
 ```
 
-## AngularJS Applications
-
-AngularJS **modules** define AngularJS applications.
-AngularJS **controllers** control AngularJS applications.
-The **ng-app** directive define sthe application, the **ng-controller** directive defines the controller.
-
-```
-<div ng-app="myApp" ng-controller="myCtrl">
-
-First Name: <input type="text" ng-model="firstName"><br>
-Last Name: <input type="text" ng-model="lastName"><br>
-<br>
-Full Name: {{firstName + " " + lastName}}
-
-</div>
-
-<script>
-//module defining application
-var app = angular.module('myApp', []);
-
-// Controller controlling application
-app.controller('myCtrl', function($scope) {
-  $scope.firstName= "John";
-  $scope.lastName= "Doe";
-});
-</script>
-```
-
 ## AngularJS Numbers
 AngularJS numbers are like JavaScript numbers:
 ```
@@ -171,5 +165,33 @@ Unlike JavaScript expressions, AngularJS expressions can be written inside HTML.
 AngularJS expressions do not support conditionals, loops, and exceptions, while JavaScript expressions do.
 
 AngularJS expressions support filters, while JavaScript expressions do not.
+
+## AngularJS Applications
+
+AngularJS **modules** define AngularJS applications.
+AngularJS **controllers** control AngularJS applications.
+The **ng-app** directive define sthe application, the **ng-controller** directive defines the controller.
+
+```
+<div ng-app="myApp" ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{firstName + " " + lastName}}
+
+</div>
+
+<script>
+//module defining application
+var app = angular.module('myApp', []);
+
+// Controller controlling application
+app.controller('myCtrl', function($scope) {
+  $scope.firstName= "John";
+  $scope.lastName= "Doe";
+});
+</script>
+```
 
 ## AngularJS Modules
