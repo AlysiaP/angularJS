@@ -1,14 +1,15 @@
-# AngularJS 
+# AngularJS
+=============================
 
 AngularJS is a JavaScript framework written in JavaScript and is distributed as a JavaScript file. Angular can be added to a web page with a script tag:
 
 `<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>`
 
 **Table of Contents**
-[Introduction](#AngularJS-Extends-HTML)
-[Directives](#AngularJS-Directives)
+- [Introduction](#angular-extends-html)
+- [Directives](#angularjs-directives)
 
-[AngularJS Extends HTML]
+## AngularJS Extends HTML
 
 AngularJS extends HTML with ng-directives, such as:
 
@@ -35,7 +36,7 @@ Example:
 Example explained:
 > AngularJS starts automatically when the web page has loaded. The **ng-app** directive tells AngularJS that the `<div>` element is the "owner" of an AngularJS application. The **ng-model** directive binds the value of the input field to the application variable name. The **ng-bind** directive binds the content of the `<p>` element to the application variable name.
   
-[AngularJS Directives]
+## AngularJS Directives
 
 AngularJS directives are HTML attributes with an ng prefix.
 
