@@ -14,9 +14,9 @@ After moving from Texas to Oregon, I've had a lot of free time on my hands and a
   - [Arrays](#angularjs-arrays)
 - [Applications](#angularjs-applications)
 - [Modules](#angularjs-modules)
-  - [Creating a Module]()
-  - [Adding a Controller]()
-  - [Adding a Directive]()
+  - [Creating a Module](#creating-a-module)
+  - [Adding a Controller](#adding-a-controller)
+  - [Adding a Directive](#adding-a-directive)
   - [Modules and Controllers in Files]()
   - [Functions can Pollute the Global Namespace]()
   - [When to Load the Library]()
@@ -201,3 +201,34 @@ app.controller('myCtrl', function($scope) {
 ```
 
 ## AngularJS Modules
+An AngularJS moduel defines an applications
+The module is a container for the different parts of an application
+The module is a containter for the application controllers.
+Controllers always belong to a module.
+
+### Creating a Module
+A module is created by using the function `angular.module`:
+```
+<div ng-app="myApp">...</div>
+
+<script>
+  var app = angular.module("myApp", []);
+</script>
+```
+The "myApp" parameter regeres to an HTML element in which the application will run.
+Now you can add controllers, directives, filters, and more to your AngularJS application.
+
+### Adding a Controller
+Adding a controller to yoru application and refer to the controller with the `ng-controller` directive: 
+```
+app.controller("myCtrl", function($scope) {
+  $scope.firstName = "John";
+  $scope.lastName = "Doe";
+});
+
+</script>
+```
+### Adding a Directive
+AngularJS has a set of built-in directives which you can use to add functionality to your application.
+
+For a full reference, visit the [AngularJS directive reference](https://www.w3schools.com/angular/angular_ref_directives.asp).
