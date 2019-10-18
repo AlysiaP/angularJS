@@ -1,4 +1,4 @@
-# AngularJS
+# AngularJS 
 
 AngularJS is a JavaScript framework written in JavaScript and is distributed as a JavaScript file. Angular can be added to a web page with a script tag:
 
@@ -27,19 +27,17 @@ Example:
 ```
 
 Example explained:
-AngularJS starts automatically when the web page has loaded.
-The ng-app directive tells AngularJS that the <div> element is the "owner" of an AngularJS application.
-The ng-model directive binds the value of the input field to the application variable name.
-The ng-bind directive binds the content of the <p> element to the application variable name.
+> AngularJS starts automatically when the web page has loaded. The **ng-app** directive tells AngularJS that the <div> element is the "owner" of an AngularJS application. The **ng-model** directive binds the value of the input field to the application variable name. The **ng-bind** directive binds the content of the <p> element to the application variable name.
   
 # AngularJS Directives
 
 AngularJS directives are HTML attributes with an ng prefix.
 
-For example, the ng-init directive initializes AngularJS application variables.
+For example, the **ng-init** directive *initializes* AngularJS application variables.
 
 ```
 <div ng-app="" ng-init="firstName='John'">
   <p>The name is <span ng-bind="firstName"></span></p>
 </div>
 ```
+The span with ng-bind will take the variable of firstName and fill in that placeholder with the value of John when 
