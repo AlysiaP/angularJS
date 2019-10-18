@@ -5,6 +5,7 @@ AngularJS is a JavaScript framework written in JavaScript and is distributed as 
 `<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>`
 
 So, if you're ready to buckle down and learn some AngularJS, you're in the right place! Let's do this...
+
 ![myImage](https://media.giphy.com/media/XRB1uf2F9bGOA/giphy.gif)
 
 ## Table of Contents
