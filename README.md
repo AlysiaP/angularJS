@@ -2,7 +2,9 @@
 
 AngularJS is a JavaScript framework written in JavaScript and is distributed as a JavaScript file. Angular can be added to a web page with a script tag:
 
-`<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>`
+```
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+```
 
 So, if you're ready to buckle down and learn some AngularJS, you're in the right place! Let's do this...
 
