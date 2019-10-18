@@ -1,17 +1,11 @@
 # AngularJS
 
-AngularJS is a JavaScript framework written in JavaScript and is distributed as a JavaScript file. Angular can be added to a web page with a script tag:
-
-```
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-```
-
-So, if you're ready to buckle down and learn some AngularJS, you're in the right place! Let's do this...
+After moving from Texas to Oregon, I've had a lot of free time on my hands and am taking it upon myself to learn modern frameworks, improve best practices and grow as a developer. Noticed there's a number of other who are in the same boat and created this repo to share my findings, record examples/experiments and hopefully showcase what all you can do with AngularJS. So, if you're ready to buckle down and learn, you're in the right place! Let's do this...
 
 ![myImage](https://media.giphy.com/media/XRB1uf2F9bGOA/giphy.gif)
 
 ## Table of Contents
-- [Intro](#angularjs-extends-html)
+- [Intro](#getting-started)
 - [Directives](#angularjs-directives)
 - [Expressions](#angularjs-expressions)
   - [Numbers](#angularjs-numbers)
@@ -35,8 +29,15 @@ So, if you're ready to buckle down and learn some AngularJS, you're in the right
   - [Restrictions]()
 - [Data Binding]()
   
+## Getting started
 
-## AngularJS Extends HTML
+AngularJS is a JavaScript framework written in JavaScript and is distributed as a JavaScript file. Angular can be added to a web page with a script tag:
+
+```
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+```
+
+### AngularJS Extends HTML
 
 AngularJS extends HTML with ng-directives, such as:
 
