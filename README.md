@@ -9,7 +9,9 @@ AngularJS is a JavaScript framework written in JavaScript and is distributed as 
 AngularJS extends HTML with ng-directives, such as:
 
 `ng-app` : defines an Angular application
+
 `ng-model` : binds the value of HTML controls (input, select, textarea) to application data
+
 `ng-bind` : binds application data to the HTML view
 
 Example: 
