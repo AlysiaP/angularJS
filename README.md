@@ -44,10 +44,109 @@ For example, the **ng-init** directive *initializes* AngularJS application varia
 ```
 The span with ng-bind will take the variable of firstName and fill in that placeholder with the value of John when 
 
-> Alternatively, you can use **data-ng-**, instead of **ng-**, if you want to make your page HTML valid as shown below and will *not* through an error when validating HTML code for compliance.
+> Alternatively, you can use **data-ng-**, instead of **ng-**, if you want to make your page HTML valid as demonstrated below.
 
 ```
 <div data-ng-app="" data-ng-init="firstName='John'">
   <p>The name is <span data-ng-bind="firstName"></span></p>
+</div>
+```
+
+## AngularJS Expressions
+
+AngularJS expressions are written indies double braces: `**{{ expression }}**`
+Expressions can also be written inside a directive: `**ng-bind="expression"**`
+AngularJS will resolve the expression, and return the result exactly where the expression is written.
+**AngularJS expressions** are much like **JavaScript expressions**: They can contain literals, operators, and variables.
+
+AngularJS will "output" data exactly where the expression is written:
+```
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="">
+  <p>My first expression: {{ 5 + 5 }}</p>
+</div>
+
+</body>
+</html>
+```
+> If you remove the `ng-app` directive, HTML will display the expression as it is, without solving it.
+
+AngularJS expressions bind AngularJS data to HTML the same way as the **ng-bind** directive.
+
+```
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="">
+  <p>Name: <input type="text" ng-model="name"></p>
+  <p>{{name}}</p>
+</div>
+
+</body>
+</html>
+```
+
+## AngularJS Applications
+
+AngularJS **modules** define AngularJS applications.
+AngularJS **controllers** control AngularJS applications.
+The **ng-app** directive define sthe application, the **ng-controller** directive defines the controller.
+
+```
+<div ng-app="myApp" ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{firstName + " " + lastName}}
+
+</div>
+
+<script>
+//module defining application
+var app = angular.module('myApp', []);
+
+// Controller controlling application
+app.controller('myCtrl', function($scope) {
+  $scope.firstName= "John";
+  $scope.lastName= "Doe";
+});
+</script>
+```
+
+## AngularJS Numbers
+AngularJS numbers are like JavaScript numbers:
+```
+<div ng-app="" ng-init="quantity=1;cost=5">
+  <p>Total in dollar: {{ quantity * cost }}</p>
+</div>
+```
+Same example using `ng-bind`:
+```
+<div ng-app="" ng-init="quantity=1;cost=5">
+  <p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+</div>
+```
+> Using `ng-init` is not very common. You will learn a better way to initialize data in the section about controllers.
+
+## AngularJS Strings
+AngularJS strings are like JavaScript strings:
+```
+<div ng-app="" ng-init="firstName='John';lastName='Doe'">
+  <p>The name is {{ firstName + " " + lastName }}</p>
+</div>
+```
+
+## AngularJS Objects
+AngularJS objects are like JavaScript objects:
+```
+<div ng-app="" ng-init="person={firstName:'John',lastName:'Doe'}">
+  <p>The name is {{ person.lastName }}</p>
 </div>
 ```
