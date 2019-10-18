@@ -13,8 +13,7 @@ AngularJS extends HTML with ng-directives, such as:
 `ng-bind` : binds application data to the HTML view
 
 Example: 
-`
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <body>
@@ -23,8 +22,7 @@ Example:
       <p ng-bind="name"></p>
     </div>
   </body>
-</html>
-`
+</html>`
 
 Example explained:
 AngularJS starts automatically when the web page has loaded.
@@ -38,8 +36,6 @@ AngularJS directives are HTML attributes with an ng prefix.
 
 For example, the ng-init directive initializes AngularJS application variables.
 
-`
-<div ng-app="" ng-init="firstName='John'">
+`<div ng-app="" ng-init="firstName='John'">
   <p>The name is <span ng-bind="firstName"></span></p>
-</div>
-`
+</div>`
