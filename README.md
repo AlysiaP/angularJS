@@ -1,6 +1,7 @@
 # AngularJS
+After moving from Texas to Oregon, I've had a lot of free time on my hands and am taking it upon myself to learn modern frameworks, improve best practices and grow as a developer.
 
-After moving from Texas to Oregon, I've had a lot of free time on my hands and am taking it upon myself to learn modern frameworks, improve best practices and grow as a developer. Noticed there's a number of other who are in the same boat and created this repo to share my findings, record examples/experiments and hopefully showcase what all you can do with AngularJS. So, if you're ready to buckle down and learn, you're in the right place! Let's do this...
+Noticed there's a number of others who are in the same boat and created this repo to share my findings, record examples/experiments and hopefully showcase what all you can do with AngularJS. So, if you're ready to buckle down and learn, you're in the right place! Let's do this...
 
 ![myImage](https://media.giphy.com/media/XRB1uf2F9bGOA/giphy.gif)
 
