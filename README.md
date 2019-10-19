@@ -20,14 +20,21 @@ Noticed there's a number of others who are in the same boat and created this rep
   - [Modules and Controllers in Files]()
   - [Functions can Pollute the Global Namespace]()
   - [When to Load the Library]()
-- [Directives]()
-  - [Intro to Directives]()
-  - [ng-app]()
-  - [ng-init]()
-  - [ng-model]()
-  - [Creating new Directives]()
-  - [Restrictions]()
+- [Directives](#angularjs-directives)
+  - [ng-repeat](#the-ng-repeat-directive)
+  - [ng-app](#the-ng-app-directive)
+  - [ng-init](#the-ng-init-directive)
+  - [ng-model](#the-ng-model-directive)
+  - [Create new Directives](#create-new-directives)
+  - [Restrictions](#restictions)
+- [AngularJS Model](#angularjs-model)
+  - [Two-Way Binding](#two-way-binding)
+  - [Validate User Input](#validate-user-input)
+  - [Application Status](#application-status)
+  - [CSS Classes](#css-classes)
 - [Data Binding](#angularjs-data-binding)
+  
+  
   
 ## Getting started
 
@@ -63,7 +70,9 @@ Example:
 
 Example explained:
 > AngularJS starts automatically when the web page has loaded. The **ng-app** directive tells AngularJS that the `<div>` element is the "owner" of an AngularJS application. The **ng-model** directive binds the value of the input field to the application variable name. The **ng-bind** directive binds the content of the `<p>` element to the application variable name.
-  
+
+
+
 ## AngularJS Applications
 
 AngularJS **modules** define AngularJS applications.
@@ -72,65 +81,71 @@ The **ng-app** directive define sthe application, the **ng-controller** directiv
 
 ```
 <div ng-app="myApp" ng-controller="myCtrl">
-
-First Name: <input type="text" ng-model="firstName"><br>
-Last Name: <input type="text" ng-model="lastName"><br>
-<br>
-Full Name: {{firstName + " " + lastName}}
-
+  First Name: <input type="text" ng-model="firstName">
+  <br>
+  Last Name: <input type="text" ng-model="lastName">
+  <br>
+  <br>
+  Full Name: {{firstName + " " + lastName}}
 </div>
 
 <script>
-//module defining application
-var app = angular.module('myApp', []);
+  //module defining application
+  var app = angular.module('myApp', []);
 
-// Controller controlling application
-app.controller('myCtrl', function($scope) {
-  $scope.firstName= "John";
-  $scope.lastName= "Doe";
-});
+  // Controller controlling application
+  app.controller('myCtrl', function($scope) {
+    $scope.firstName= "John";
+    $scope.lastName= "Doe";
+  });
 </script>
 ```
 
+
+
 ## AngularJS Expressions
-AngularJS expressions are written indies double braces: `**{{ expression }}**`
-Expressions can also be written inside a directive: `**ng-bind="expression"**`
+AngularJS expressions are written indies double braces: `{{ expression }}`
+
+Expressions can also be written inside a directive: `ng-bind="expression"`
 
 AngularJS will resolve the expression, and return the result exactly where the expression is written.
+
 **AngularJS expressions** are much like **JavaScript expressions**: They can contain literals, operators, and variables.
 
 AngularJS will "output" data exactly where the expression is written:
 ```
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <body>
 
-<div ng-app="">
-  <p>My first expression: {{ 5 + 5 }}</p>
-</div>
+  <div ng-app="">
+    <p>My first expression: {{ 5 + 5 }}</p>
+  </div>
 
-</body>
+  </body>
 </html>
 ```
 > If you remove the `ng-app` directive, HTML will display the expression as it is, without solving it.
+
 
 AngularJS expressions bind AngularJS data to HTML the same way as the **ng-bind** directive.
 
 ```
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <body>
 
-<div ng-app="">
-  <p>Name: <input type="text" ng-model="name"></p>
-  <p>{{name}}</p>
-</div>
+  <div ng-app="">
+    <p>Name: <input type="text" ng-model="name"></p>
+    <p>{{name}}</p>
+  </div>
 
-</body>
+  </body>
 </html>
 ```
+
 
 ### AngularJS Numbers
 AngularJS numbers are like JavaScript numbers:
@@ -147,6 +162,7 @@ Same example using `ng-bind`:
 ```
 > Using `ng-init` is not very common. You will learn a better way to initialize data in the section about controllers.
 
+
 ### AngularJS Strings
 AngularJS strings are like JavaScript strings:
 ```
@@ -155,6 +171,7 @@ AngularJS strings are like JavaScript strings:
 </div>
 ```
 
+
 ### AngularJS Objects
 AngularJS objects are like JavaScript objects:
 ```
@@ -162,6 +179,8 @@ AngularJS objects are like JavaScript objects:
   <p>The name is {{ person.lastName }}</p>
 </div>
 ```
+
+
 ### AngularJS Arrays
 AngularJS arrays are like JavaScript arrays:
 ```
@@ -169,6 +188,7 @@ AngularJS arrays are like JavaScript arrays:
   <p>The third result is {{ points[2] }}</p>
 </div>
 ```
+
 
 ### AngularJS Expressions vs. JavaScript Expressions
 Like JavaScript expressions, AngularJS expressions can contain literals, operators, and variables.
@@ -187,6 +207,7 @@ The module is a container for the different parts of an application
 The module is a containter for the application controllers.
 Controllers always belong to a module.
 
+
 ### Creating a Module
 A module is created by using the function `angular.module`:
 ```
@@ -199,6 +220,7 @@ A module is created by using the function `angular.module`:
 The "myApp" parameter regeres to an HTML element in which the application will run.
 Now you can add controllers, directives, filters, and more to your AngularJS application.
 
+
 ### Adding a Controller
 Adding a controller to yoru application and refer to the controller with the `ng-controller` directive: 
 ```
@@ -209,6 +231,8 @@ app.controller("myCtrl", function($scope) {
 
 </script>
 ```
+
+
 ### Adding a Directive
 AngularJS has a set of built-in directives which you can use to add functionality to your application.
 
@@ -229,23 +253,24 @@ app.directive("w3TestDirective", function() {
 </script>
 ```
 
+
 ### Modules and Controllers in Files
 It's common in AngularJS applications to put the module and the controllers in JavaScript files.
 In this example, "myApp.js" contains an application module definition, while "myCtrl.js" contains the controller:
 ```
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <body>
 
-<div ng-app="myApp" ng-controller="myCtrl">
-{{ firstName + " " + lastName }}
-</div>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      {{ firstName + " " + lastName }}
+    </div>
 
-<script src="myApp.js"></script>
-<script src="myCtrl.js"></script>
+    <script src="myApp.js"></script>
+    <script src="myCtrl.js"></script>
 
-</body>
+  </body>
 </html>
 ```
 #### myApp.js
@@ -253,6 +278,7 @@ In this example, "myApp.js" contains an application module definition, while "my
 var app = angular.module("myApp",[]);
 ```
 > The [] parameter in the module definition can be used to define dependent modules. Without the [] parameter, you are not creating a new module, but retrieving an existing one.
+
 #### myCtrl.js
 ```
 app.controller("myCtrl", function($scope) {
@@ -274,29 +300,29 @@ This is because calls to `angular.module` can only be compiled after the library
 ```
 <!DOCTYPE html>
 <html>
-<body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
-<div ng-app="myApp" ng-controller="myCtrl">
-{{ firstName + " " + lastName }}
-</div>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      {{ firstName + " " + lastName }}
+    </div>
 
-<script>
-var app = angular.module("myApp", []);
-app.controller("myCtrl", function($scope) {
-  $scope.firstName = "John";
-  $scope.lastName = "Doe";
-});
-</script>
+    <script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function($scope) {
+      $scope.firstName = "John";
+      $scope.lastName = "Doe";
+    });
+    </script>
 
-</body>
+  </body>
 </html>
 ```
 ## AngularJS Directives
 
 AngularJS lets you extend HTML with new attributes called **directives** with an `ng-` prefix.
 
-For example, the **ng-init** directive *initializes* AngularJS application variables.
+For example, the `ng-init` directive *initializes* AngularJS application variables.
 
 ```
 <div ng-app="" ng-init="firstName='John'">
@@ -312,13 +338,18 @@ For example, the **ng-init** directive *initializes* AngularJS application varia
 </div>
 ```
 
-### Data Binding
+
+#### Data Binding
 The `{{ firstName }}` expression in the example aboves is an AngularJS data binding expression.
+
 Data binding in AngularJS binds expressions with data:
+
 `{{ firstName }}` is bound with `ng-model="firstName"`
 
-### Repeating HTML Elements
+
+### The `ng-repeat` directive
 The `ng-repeat` directive repeats an HTML element:
+
 ```
 <div ng-app="" ng-init="names=['Jani','Hege','Kai']">
   <ul>
@@ -328,8 +359,11 @@ The `ng-repeat` directive repeats an HTML element:
   </ul>
 </div>
 ```
-The `ng-repeat` directive actually **cloens HTML elements** once for each item in a collection. 
+
+The `ng-repeat` directive actually **clones HTML elements** once for each item in a collection. 
+
 The `ng-repeat` directive used on an array of objects:
+
 ```
 <div ng-app="" ng-init="names=[
 {name:'Jani',country:'Norway'},
@@ -344,32 +378,43 @@ The `ng-repeat` directive used on an array of objects:
 
 </div>
 ```
+
 > AngularJS is perfect for database CRUD (Create Read Update Delete) applications. Just imagine if these objects were records from a database.
+
 
 ### The `ng-app` Directive
 The `ng-app` directive defines the **root element** of an AngularJS application.
+
 The `ng-app` directive will **auto-bootstrap** (automatically initialize) the application when a web page is loaded.
+
 
 ### The `ng-init` Directive
 The `ng-init` directive defines **initial values** for an AngularJS application.
+
 Normally, you will not use `ng-init`, but instead you will use a controller or module.
 
 To read more on how you'll use `ng-init` as a controller or module, click (here)[#init].
 
+
 ### The `ng-model` Directive
 The `ng-model` directive binds the value of HTML controls (input, select, textarea) to application data.
+
 The `ng-model` directive can also: 
 - Provide type validation for application data (number, email, required)
 - Provide status for application data (invalid, dirty, touched, error)
 - Provide CSS classes for HTML elements
 - Bind HTML elements to HTML forms
 
+
 ### Create New Directives
 In addition to all the built-in AngularJS directives, you can create your own directives.
+
 New directives are created by using the `.directive` function
+
 To invoke the new directive, make an HTML element with the same tag name as the new directive.
 
 When naming a direction, you must use a camel case name, `myDirective`, but when invoking it, you must use `-` separated name, `my-directive`:
+
 ```
 <body ng-app="myApp">
 
@@ -386,19 +431,17 @@ app.directive("myDirective", function() {
 
 </body>
 ```
+
 You can invoke a directive by using:
-- Element name
-`<my-directive></my-directive>`
-- Attribute
-`<div my-directive></div>`
-- Class
-`<div class="my-directive"></div>`
-- Comment
-`<!-- directive: my-directive -->`
+- Element name : `<my-directive></my-directive>`
+- Attribute : `<div my-directive></div>`
+- Class : `<div class="my-directive"></div>`
+- Comment : `<!-- directive: my-directive -->`
 
 ### Restrictions
 You can restrict your directives to only be invoked by some of the methods.
 For example, by adding a restrict property with the value "A", the directive can only be invoked by attributes:
+
 ```
 var app = angular.module("myApp", []);
 app.directive("myDirective", function() {
@@ -408,6 +451,7 @@ app.directive("myDirective", function() {
   };
 });
 ```
+
 The legal restrict values are:
 - `E` for Element name
 - `A` for Attribute
@@ -416,7 +460,10 @@ The legal restrict values are:
 
 By default the value is `EA`, meanign that both Element names and attribute naems can invoke the directive.
 
+
+
 ## AngularJS Model
+
 ### The ng-model Directive
 The `ng-model` directive binds the value of HTML controls (input, select, textarea) to application data.
 
@@ -428,21 +475,25 @@ For example, with the `ng-model` directive, you can bind the value of an input f
 </div>
 
 <script>
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
-  $scope.name = "John Doe";
-});
+  var app = angular.module('myApp', []);
+  
+  app.controller('myCtrl', function($scope) {
+    $scope.name = "John Doe";
+  });
 </script>
 ```
 
+
 ### Two-Way Binding
 The binding goes both ways. If the user changes the value inside the input field, the AngularJS property will also change it's value:
+
 ```
 <div ng-app="myApp" ng-controller="myCtrl">
   Name: <input ng-model="name">
   <h1>You entered: {{name}}</h1>
 </div>
 ```
+
 
 ### Validate User Input
 The `ng-model` directive can provide type validation for application data (number, email, required):
