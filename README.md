@@ -345,3 +345,114 @@ The `ng-repeat` directive used on an array of objects:
 </div>
 ```
 > AngularJS is perfect for database CRUD (Create Read Update Delete) applications. Just imagine if these objects were records from a database.
+
+### The `ng-app` Directive
+The `ng-app` directive defines the **root element** of an AngularJS application.
+The `ng-app` directive will **auto-bootstrap** (automatically initialize) the application when a web page is loaded.
+
+### The `ng-init` Directive
+The `ng-init` directive defines **initial values** for an AngularJS application.
+Normally, you will not use `ng-init`, but instead you will use a controller or module.
+
+To read more on how you'll use `ng-init` as a controller or module, click (here)[#init].
+
+### The `ng-model` Directive
+The `ng-model` directive binds the value of HTML controls (input, select, textarea) to application data.
+The `ng-model` directive can also: 
+- Provide type validation for application data (number, email, required)
+- Provide status for application data (invalid, dirty, touched, error)
+- Provide CSS classes for HTML elements
+- Bind HTML elements to HTML forms
+
+### Create New Directives
+In addition to all the built-in AngularJS directives, you can create your own directives.
+New directives are created by using the `.directive` function
+To invoke the new directive, make an HTML element with the same tag name as the new directive.
+
+When naming a direction, you must use a camel case name, `myDirective`, but when invoking it, you must use `-` separated name, `my-directive`:
+```
+<body ng-app="myApp">
+
+<my-directive></my-directive>
+
+<script>
+var app = angular.module("myApp", []);
+app.directive("myDirective", function() {
+  return {
+    template : "<h1>Made by a directive!</h1>"
+  };
+});
+</script>
+
+</body>
+```
+You can invoke a directive by using:
+- Element name
+`<my-directive></my-directive>`
+- Attribute
+`<div my-directive></div>`
+- Class
+`<div class="my-directive"></div>`
+- Comment
+`<!-- directive: my-directive -->`
+
+### Restrictions
+You can restrict your directives to only be invoked by some of the methods.
+For example, by adding a restrict property with the value "A", the directive can only be invoked by attributes:
+```
+var app = angular.module("myApp", []);
+app.directive("myDirective", function() {
+  return {
+    restrict : "A",
+    template : "<h1>Made by a directive!</h1>"
+  };
+});
+```
+The legal restrict values are:
+- `E` for Element name
+- `A` for Attribute
+- `C` for Class
+- `M` for Comment
+
+By default the value is `EA`, meanign that both Element names and attribute naems can invoke the directive.
+
+## AngularJS Model
+### The ng-model Directive
+The `ng-model` directive binds the value of HTML controls (input, select, textarea) to application data.
+
+For example, with the `ng-model` directive, you can bind the value of an input field to a variable created in AngularJS.
+
+```
+<div ng-app="myApp" ng-controller="myCtrl">
+  Name: <input ng-model="name">
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+  $scope.name = "John Doe";
+});
+</script>
+```
+
+### Two-Way Binding
+The binding goes both ways. If the user changes the value inside the input field, the AngularJS property will also change it's value:
+```
+<div ng-app="myApp" ng-controller="myCtrl">
+  Name: <input ng-model="name">
+  <h1>You entered: {{name}}</h1>
+</div>
+```
+
+### Validate User Input
+The `ng-model` directive can provide type validation for application data (number, email, required):
+```
+<form ng-app="" name="myForm">
+  Email:
+  <input type="email" name="myAddress" ng-model="text">
+  <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
+</form>
+```
+In the example above, the span wil lbe displayed only if the expression in the `ng-show` attribute returns `true`.
+
+> If the property in the `ng-model` attribute does not exist, AngularJS will create one for you
