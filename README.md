@@ -548,3 +548,135 @@ The `ng-model` directive adds/removes the following classes, according to the st
 - ng-pristine
 
 ## AngularJS Data Binding
+Data binding in AngularJS is the synchronization between the model and the view.
+
+
+### Data Model
+AngularJS applications usually have a data model. The data model is a collection of data available for the application.
+
+```
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+  $scope.firstname = "John";
+  $scope.lastname = "Doe";
+});
+```
+
+
+### HTML View
+The HTML container where the AngularJS application is displayed is called the view.
+
+The view has access to the model, and there are several ways of displaying model data in the view.
+
+You can use the `ng-bind` directive, which will bind the innerHTML of the element to the specified model property:
+
+```
+<p ng-bind="firstname"></p>
+```
+
+You can also use double braces `{{ }}` to display content from the model:
+
+```
+<p>First name: {{firstname}}</p>
+```
+
+Or you can use the `ng-model` directive on HTML controls to bind the model to the view.
+
+### The `ng-model` Directive
+Use the `ng-model` directive to bind data from the model to the view on HTML controls (input, select, textarea).
+
+```
+<input ng-model="firstname">
+```
+
+The `ng-model` directive provides a two-way binding between the model and the view.
+
+### Two-way Binding
+Data binding in AngularJS is the synchronization between the model and the view.
+
+When data in the *model* changes, the *view* reflects the change, and when data in the *view* changes, the *model* is updated as well. This happens immediately and automatically, which makes sure that the model and the view is updated at all times.
+
+```
+<div ng-app="myApp" ng-controller="myCtrl">
+  Name: <input ng-model="firstname">
+  <h1>{{firstname}}</h1>
+</div>
+
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('myCtrl', function($scope) {
+    $scope.firstname = "John";
+    $scope.lastname = "Doe";
+  });
+</script>
+```
+
+### AngularJS Controller
+Applications in AngularJS are controlled by controllers. Read more about controllers in the Controllers section (here)[].
+
+Because of the immediate synchronization of the model and the view, the controller can be completely separated from the view, and simply concentrate on the model data. Thanks to the data binding in AngularJS, the view will reflect any changes made in the controller.
+
+```
+<div ng-app="myApp" ng-controller="myCtrl">
+  <h1 ng-click="changeName()">{{firstname}}</h1>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+  $scope.firstname = "John";
+  $scope.changeName = function() {
+    $scope.firstname = "Nelly";
+  }
+});
+</script>
+```
+
+## AngularJS Controllers
+AngularJS controllers **control the data** of AngularJS applications.
+
+AngularJS controllers are regular **JavaScript Objects**.
+
+### AngularJS Controllers
+AngularJS applications are controlled by controllers.
+
+The ng-controller directive defines the application controller.
+
+A controller is a JavaScript Object, created by a standard JavaScript object constructor.
+
+```
+<div ng-app="myApp" ng-controller="myCtrl">
+
+  First Name: <input type="text" ng-model="firstName">
+  <br>
+  Last Name: <input type="text" ng-model="lastName">
+  <br>
+  <br>
+  Full Name: {{firstName + " " + lastName}}
+
+</div>
+
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('myCtrl', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+  });
+</script>
+```
+
+Application explained:
+
+> The AngularJS application is defined by  ng-app="myApp". The application runs inside the <div>.
+
+> The ng-controller="myCtrl" attribute is an AngularJS directive. It defines a controller.
+
+> The myCtrl function is a JavaScript function.
+
+> AngularJS will invoke the controller with a $scope object.
+
+> In AngularJS, $scope is the application object (the owner of application variables and functions).
+
+> The controller creates two properties (variables) in the scope (firstName and lastName).
+
+> The ng-model directives bind the input fields to the controller properties (firstName and lastName).
