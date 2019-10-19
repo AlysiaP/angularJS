@@ -667,16 +667,35 @@ A controller is a JavaScript Object, created by a standard JavaScript object con
 
 Application explained:
 
-> The AngularJS application is defined by  ng-app="myApp". The application runs inside the <div>.
+> The AngularJS application is defined by **ng-app="myApp"**. The application runs inside the `<div>`. The **ng-controller="myCtrl"** attribute is an AngularJS directive. It defines a controller. The **myCtrl** function is a JavaScript function. AngularJS will invoke the controller with a **$scope** object. In AngularJS, $scope is the application object (the owner of application variables and functions). The controller creates two properties (variables) in the scope (**firstName** and **lastName**). The **ng-model** directives bind the input fields to the controller properties (firstName and lastName).
 
-> The ng-controller="myCtrl" attribute is an AngularJS directive. It defines a controller.
+### Controller Methods
+The example above demonstrated a controller object with two properties: lastName and firstName
 
-> The myCtrl function is a JavaScript function.
+A controller can also have methods (variables as functions):
 
-> AngularJS will invoke the controller with a $scope object.
+```
+<div ng-app="myApp" ng-controller="personCtrl">
 
-> In AngularJS, $scope is the application object (the owner of application variables and functions).
+  First Name: <input type="text" ng-model="firstName">
+  <br>
+  Last Name: <input type="text" ng-model="lastName">
+  <br>
+  <br>
+  Full Name: {{fullName()}}
 
-> The controller creates two properties (variables) in the scope (firstName and lastName).
+</div>
 
-> The ng-model directives bind the input fields to the controller properties (firstName and lastName).
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('personCtrl', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+    $scope.fullName = function() {
+      return $scope.firstName + " " + $scope.lastName;
+    };
+  });
+</script>
+```
+
+### Controllers In External Files
