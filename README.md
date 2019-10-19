@@ -27,7 +27,7 @@ Noticed there's a number of others who are in the same boat and created this rep
   - [ng-model]()
   - [Creating new Directives]()
   - [Restrictions]()
-- [Data Binding]()
+- [Data Binding](#angularjs-data-binding)
   
 ## Getting started
 
@@ -456,3 +456,44 @@ The `ng-model` directive can provide type validation for application data (numbe
 In the example above, the span wil lbe displayed only if the expression in the `ng-show` attribute returns `true`.
 
 > If the property in the `ng-model` attribute does not exist, AngularJS will create one for you
+
+### Application Status
+The `ng-model` directive can provide status for applicatoin data (valid, dirty, touched, error):
+```
+<form ng-app="" name="myForm" ng-init="myText = 'post@domain.com'">
+  Email:
+  <input type="email" name="myAddress" ng-model="myText" required>
+  <h1>Status</h1>
+  {{myForm.myAddress.$valid}}
+  {{myForm.myAddress.$dirty}}
+  {{myForm.myAddress.$touched}}
+</form>
+```
+
+### CSS Classes
+The `ng-model` directive provides CSS classes for HTML elemetns, depending on their status:
+```
+<style>
+input.ng-invalid {
+  background-color: lightblue;
+}
+</style>
+
+<form ng-app="" name="myForm">
+  Enter your name:
+  <input name="myName" ng-model="myText" required>
+</form>
+```
+
+The `ng-model` directive adds/removes the following classes, according to the status of the form field:
+- ng-empty
+- ng-not-empty
+- ng-touched
+- ng-untouched
+- ng-valid
+- ng-invalid
+- ng-dirty
+- ng-pending
+- ng-pristine
+
+## AngularJS Data Binding
