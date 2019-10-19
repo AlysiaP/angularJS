@@ -6,13 +6,12 @@ After moving from Texas to Oregon, I've had a lot of free time on my hands and a
 
 ## Table of Contents
 - [Intro](#getting-started)
-- [Directives](#angularjs-directives)
+- [Applications](#angularjs-applications)
 - [Expressions](#angularjs-expressions)
   - [Numbers](#angularjs-numbers)
   - [Strings](#angularjs-stings)
   - [Objects](#angularjs-objects)
   - [Arrays](#angularjs-arrays)
-- [Applications](#angularjs-applications)
 - [Modules](#angularjs-modules)
   - [Creating a Module](#creating-a-module)
   - [Adding a Controller](#adding-a-controller)
@@ -64,25 +63,32 @@ Example:
 Example explained:
 > AngularJS starts automatically when the web page has loaded. The **ng-app** directive tells AngularJS that the `<div>` element is the "owner" of an AngularJS application. The **ng-model** directive binds the value of the input field to the application variable name. The **ng-bind** directive binds the content of the `<p>` element to the application variable name.
   
-## AngularJS Directives
+## AngularJS Applications
 
-AngularJS directives are HTML attributes with an ng prefix.
-
-For example, the **ng-init** directive *initializes* AngularJS application variables.
+AngularJS **modules** define AngularJS applications.
+AngularJS **controllers** control AngularJS applications.
+The **ng-app** directive define sthe application, the **ng-controller** directive defines the controller.
 
 ```
-<div ng-app="" ng-init="firstName='John'">
-  <p>The name is <span ng-bind="firstName"></span></p>
+<div ng-app="myApp" ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{firstName + " " + lastName}}
+
 </div>
-```
-The span with ng-bind will take the variable of firstName and fill in that placeholder with the value of John when 
 
-> Alternatively, you can use **data-ng-**, instead of **ng-**, if you want to make your page HTML valid as demonstrated below.
+<script>
+//module defining application
+var app = angular.module('myApp', []);
 
-```
-<div data-ng-app="" data-ng-init="firstName='John'">
-  <p>The name is <span data-ng-bind="firstName"></span></p>
-</div>
+// Controller controlling application
+app.controller('myCtrl', function($scope) {
+  $scope.firstName= "John";
+  $scope.lastName= "Doe";
+});
+</script>
 ```
 
 ## AngularJS Expressions
@@ -172,33 +178,7 @@ AngularJS expressions do not support conditionals, loops, and exceptions, while 
 
 AngularJS expressions support filters, while JavaScript expressions do not.
 
-## AngularJS Applications
 
-AngularJS **modules** define AngularJS applications.
-AngularJS **controllers** control AngularJS applications.
-The **ng-app** directive define sthe application, the **ng-controller** directive defines the controller.
-
-```
-<div ng-app="myApp" ng-controller="myCtrl">
-
-First Name: <input type="text" ng-model="firstName"><br>
-Last Name: <input type="text" ng-model="lastName"><br>
-<br>
-Full Name: {{firstName + " " + lastName}}
-
-</div>
-
-<script>
-//module defining application
-var app = angular.module('myApp', []);
-
-// Controller controlling application
-app.controller('myCtrl', function($scope) {
-  $scope.firstName= "John";
-  $scope.lastName= "Doe";
-});
-</script>
-```
 
 ## AngularJS Modules
 An AngularJS moduel defines an applications
@@ -311,3 +291,56 @@ app.controller("myCtrl", function($scope) {
 </body>
 </html>
 ```
+## AngularJS Directives
+
+AngularJS lets you extend HTML with new attributes called **directives** with an `ng-` prefix.
+
+For example, the **ng-init** directive *initializes* AngularJS application variables.
+
+```
+<div ng-app="" ng-init="firstName='John'">
+  <p>The name is <span ng-bind="firstName"></span></p>
+</div>
+```
+
+> Alternatively, you can use **data-ng-**, instead of **ng-**, if you want to make your page HTML valid as demonstrated below.
+
+```
+<div data-ng-app="" data-ng-init="firstName='John'">
+  <p>The name is <span data-ng-bind="firstName"></span></p>
+</div>
+```
+
+### Data Binding
+The `{{ firstName }}` expression in the example aboves is an AngularJS data binding expression.
+Data binding in AngularJS binds expressions with data:
+`{{ firstName }}` is bound with `ng-model="firstName"`
+
+### Repeating HTML Elements
+The `ng-repeat` directive repeats an HTML element:
+```
+<div ng-app="" ng-init="names=['Jani','Hege','Kai']">
+  <ul>
+    <li ng-repeat="x in names">
+      {{ x }}
+    </li>
+  </ul>
+</div>
+```
+The `ng-repeat` directive actually **cloens HTML elements** once for each item in a collection. 
+The `ng-repeat` directive used on an array of objects:
+```
+<div ng-app="" ng-init="names=[
+{name:'Jani',country:'Norway'},
+{name:'Hege',country:'Sweden'},
+{name:'Kai',country:'Denmark'}]">
+
+<ul>
+  <li ng-repeat="x in names">
+    {{ x.name + ', ' + x.country }}
+  </li>
+</ul>
+
+</div>
+```
+> AngularJS is perfect for database CRUD (Create Read Update Delete) applications. Just imagine if these objects were records from a database.
